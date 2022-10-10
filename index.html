@@ -405,11 +405,174 @@
 <p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/lda.jpg" alt="个人照片"></p>
 <!--  -->
 
-<h3 id="More-information-about-me"><a href="#More-information-about-me" class="headerlink" title="More information about me:"></a>More information about me:</h3><p><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Yan-Zhang-532">Researchgate</a></p>
+<h3 id="More-information-about-me"><a href="#More-information-about-me" class="headerlink" title="More information about me:"></a>More information about me:</h3><div>
+<a target="_blank" rel="noopener" href="https://info.flagcounter.com/16fE"><img src="https://s01.flagcounter.com/map/16fE/size_l/txt_000000/border_CCCCCC/pageviews_0/viewers_3/flags_0/" alt="Flag Counter" border="0"></a>
+</div>
+
+<p><a target="_blank" rel="noopener" href="https://www.researchgate.net/profile/Yan-Zhang-532">Researchgate</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34069180">CSDNblog</a></p>
 <p><a target="_blank" rel="noopener" href="https://scholar.google.com.hk/citations?user=H8T2HtsAAAAJ">Google scholar</a></p>
 <p><a target="_blank" rel="noopener" href="https://orcid.org/0000-0002-2059-4171">ORCID</a></p>
 <p><a target="_blank" rel="noopener" href="https://postimages.org/">图床</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/09/weibodata/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/6275bea8817cd5b99199fcdc83dc47d.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yan Zhang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/10/09/weibodata/" itemprop="url">weibodata</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-10-09T17:01:52+08:00">
+                2022-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>&amp;nbsp;&amp;nbsp;哈喽大家好，我又来啦！最近一直有小伙伴私戳问我要<code>签到数据</code>，本着<code>开源共享</code>的精神，我这次给大家分享中国多个城市2022年9月的匿名签到数据，欢迎大家点击再看转发，您的支持是喵喵<code>原创</code>写作最大的动力！也欢迎与我做朋友！</p>
+</blockquote>
+<p>之前几期我们介绍过微博数据的获取，大概获取为下图所示的json数据。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009171926.png"></p>
+<p>我们以杭州市为例，对json进行简单的处理，转化为csv格式,对属性进行一个统计。<br>数据主要的属性有这些:</p>
+<blockquote>
+<p>‘user_id’, ‘lng’, ‘lat’, ‘user_name’, ‘reposts_count’, ‘weibo_text’,<br>       ‘weibo_id’, ‘create_time’, ‘fans_num’, ‘location’, ‘img_url’,<br>       ‘follow_num’, ‘gender’, ‘Address’, ‘Heat’, ‘Source’, ‘city’</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009174858.png"></p>
+<p>分别是用户的ID，经纬度，转发数，终端设备，地址描述，性别等信息。</p>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009173037.png"></p>
+<p>单条微博平均转发数约为1.5，平均关注约为1242。可以看到这里的lng与lat值为0，不要担心，只是我抓取的时候为了避免网络错误，避免因秘钥超出配额引发的各种各样的错误特意设置的。</p>
+<p>我们先来看看如何根据名称请求地址。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009174858.png"><br>这位男性微博用户签到地址为<code>杭州·神游</code>，不知道是什么类型的地址。我们使用百度API对其进行解析，将<code>杭州·</code>替换为<code>杭州市</code>，将<code>city</code>限制在杭州，大家自己申请地址解码API，每天大概有5000次的免费额度。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.map.baidu.com/geocoder?address=&quot; + address + &quot;&amp;city=&quot; + str(city) + &quot;&amp;output=json&amp;key=你申请的key</span><br></pre></td></tr></table></figure>
+<p>请求的结果长这样。</p>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009175702.png"><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009175532.png"><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009175553.png"></p>
+<p>经纬度很容易看出来，这个奇怪的字符是啥？啥啥啥，写的都是啥？</p>
+<p>我们将这个奇怪的Unicode编码转成中文试试，哦，原来这个神游有50%（confidence）的可能是个旅游景点…<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009175753.png"><br>我们知道，由于国家法律规定坐标需要加密，所以我们经常在谷歌地球上看到这种奇怪的位置偏移。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009180118.png"><br>我们使用网上开源的纠偏算法对其进行处理，这一步骤的代码如下，当然您也可以点击文末的阅读原文访问Github代链接。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> pyquery <span class="keyword">import</span> PyQuery <span class="keyword">as</span> pq</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> os,json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">key = <span class="string">&#x27;&#x27;</span>  <span class="comment"># 这里填写你的百度开放平台的key</span></span><br><span class="line">x_pi = <span class="number">0</span></span><br><span class="line">pi = <span class="number">0</span> <span class="comment"># π</span></span><br><span class="line">a =<span class="number">0</span> <span class="comment"># 长半轴</span></span><br><span class="line">ee = <span class="number">0</span>  <span class="comment"># 扁率</span></span><br><span class="line"><span class="comment">#椭球参数关注微信公众号“协同感知与知识服务”（sensingcity）后台回复 椭球参数 免费获取</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transformlat</span>(<span class="params">lng, lat</span>):</span><br><span class="line">    ret = -<span class="number">100.0</span> + <span class="number">2.0</span> * lng + <span class="number">3.0</span> * lat + <span class="number">0.2</span> * lat * lat + \</span><br><span class="line">          <span class="number">0.1</span> * lng * lat + <span class="number">0.2</span> * math.sqrt(math.fabs(lng))</span><br><span class="line">    ret += (<span class="number">20.0</span> * math.sin(<span class="number">6.0</span> * lng * pi) + <span class="number">20.0</span> *</span><br><span class="line">            math.sin(<span class="number">2.0</span> * lng * pi)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    ret += (<span class="number">20.0</span> * math.sin(lat * pi) + <span class="number">40.0</span> *</span><br><span class="line">            math.sin(lat / <span class="number">3.0</span> * pi)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    ret += (<span class="number">160.0</span> * math.sin(lat / <span class="number">12.0</span> * pi) + <span class="number">320</span> *</span><br><span class="line">            math.sin(lat * pi / <span class="number">30.0</span>)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">transformlng</span>(<span class="params">lng, lat</span>):</span><br><span class="line">    ret = <span class="number">300.0</span> + lng + <span class="number">2.0</span> * lat + <span class="number">0.1</span> * lng * lng + \</span><br><span class="line">          <span class="number">0.1</span> * lng * lat + <span class="number">0.1</span> * math.sqrt(math.fabs(lng))</span><br><span class="line">    ret += (<span class="number">20.0</span> * math.sin(<span class="number">6.0</span> * lng * pi) + <span class="number">20.0</span> *</span><br><span class="line">            math.sin(<span class="number">2.0</span> * lng * pi)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    ret += (<span class="number">20.0</span> * math.sin(lng * pi) + <span class="number">40.0</span> *</span><br><span class="line">            math.sin(lng / <span class="number">3.0</span> * pi)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    ret += (<span class="number">150.0</span> * math.sin(lng / <span class="number">12.0</span> * pi) + <span class="number">300.0</span> *</span><br><span class="line">            math.sin(lng / <span class="number">30.0</span> * pi)) * <span class="number">2.0</span> / <span class="number">3.0</span></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">out_of_china</span>(<span class="params">lng, lat</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    判断是否在国内，不在国内不做偏移</span></span><br><span class="line"><span class="string">    :param lng:</span></span><br><span class="line"><span class="string">    :param lat:</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> lng &lt; <span class="number">72.004</span> <span class="keyword">or</span> lng &gt; <span class="number">137.8347</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> lat &lt; <span class="number">0.8293</span> <span class="keyword">or</span> lat &gt; <span class="number">55.8271</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bd09togcj02</span>(<span class="params">bd_lon, bd_lat</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    百度坐标系(BD-09)转火星坐标系(GCJ-02)</span></span><br><span class="line"><span class="string">    百度——&gt;谷歌、高德</span></span><br><span class="line"><span class="string">    :param bd_lat:百度坐标纬度</span></span><br><span class="line"><span class="string">    :param bd_lon:百度坐标经度</span></span><br><span class="line"><span class="string">    :return:转换后的坐标列表形式</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    x = bd_lon - <span class="number">0.0065</span></span><br><span class="line">    y = bd_lat - <span class="number">0.006</span></span><br><span class="line">    z = math.sqrt(x * x + y * y) - <span class="number">0.00002</span> * math.sin(y * x_pi)</span><br><span class="line">    theta = math.atan2(y, x) - <span class="number">0.000003</span> * math.cos(x * x_pi)</span><br><span class="line">    gg_lng = z * math.cos(theta)</span><br><span class="line">    gg_lat = z * math.sin(theta)</span><br><span class="line">    <span class="keyword">return</span> [gg_lng, gg_lat]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gcj02towgs84</span>(<span class="params">lng, lat</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    GCJ02(火星坐标系)转GPS84</span></span><br><span class="line"><span class="string">    :param lng:火星坐标系的经度</span></span><br><span class="line"><span class="string">    :param lat:火星坐标系纬度</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> out_of_china(lng, lat):</span><br><span class="line">        <span class="keyword">return</span> lng, lat</span><br><span class="line">    dlat = transformlat(lng - <span class="number">105.0</span>, lat - <span class="number">35.0</span>)</span><br><span class="line">    dlng = transformlng(lng - <span class="number">105.0</span>, lat - <span class="number">35.0</span>)</span><br><span class="line">    radlat = lat / <span class="number">180.0</span> * pi</span><br><span class="line">    magic = math.sin(radlat)</span><br><span class="line">    magic = <span class="number">1</span> - ee * magic * magic</span><br><span class="line">    sqrtmagic = math.sqrt(magic)</span><br><span class="line">    dlat = (dlat * <span class="number">180.0</span>) / ((a * (<span class="number">1</span> - ee)) / (magic * sqrtmagic) * pi)</span><br><span class="line">    dlng = (dlng * <span class="number">180.0</span>) / (a / sqrtmagic * math.cos(radlat) * pi)</span><br><span class="line">    mglat = lat + dlat</span><br><span class="line">    mglng = lng + dlng</span><br><span class="line">    <span class="keyword">return</span> [lng * <span class="number">2</span> - mglng, lat * <span class="number">2</span> - mglat]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bd09towgs84</span>(<span class="params">lng, lat</span>):  <span class="comment"># 114.277591,30.580842</span></span><br><span class="line">    result2 = bd09togcj02(lng, lat)</span><br><span class="line">    result4 = gcj02towgs84(result2[<span class="number">0</span>], result2[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> result4</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期转换</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">trans_format</span>(<span class="params">time_string</span>):</span><br><span class="line">    from_format = <span class="string">&#x27;%a %b %d %H:%M:%S +0800 %Y&#x27;</span></span><br><span class="line">    to_format = <span class="string">&#x27;%Y-%m-%d %H:%M:%S&#x27;</span></span><br><span class="line">    time_struct = time.strptime(time_string, from_format)</span><br><span class="line">    times = time.strftime(to_format, time_struct)</span><br><span class="line">    <span class="keyword">return</span> times</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">geocodeB</span>(<span class="params">address, city</span>):</span><br><span class="line">    loca = &#123;&#125;</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> address.find(<span class="string">&#x27;·&#x27;</span>):</span><br><span class="line">            address = address.replace(<span class="string">&#x27;·&#x27;</span>, <span class="string">&#x27;市&#x27;</span>, <span class="number">1</span>)</span><br><span class="line">        base = <span class="string">&quot;http://api.map.baidu.com/geocoder?address=&quot;</span> + address + <span class="string">&quot;&amp;city=&quot;</span> + <span class="built_in">str</span>(city) + <span class="string">&quot;&amp;output=json&amp;key=&quot;</span>+key<span class="string">&quot;</span></span><br><span class="line"><span class="string">        response = requests.get(base,timeout=(3.05, 27))</span></span><br><span class="line"><span class="string">        answer = response.json()</span></span><br><span class="line"><span class="string">        tamped = bd09towgs84(answer[&#x27;result&#x27;][&#x27;location&#x27;][&#x27;lng&#x27;], answer[&#x27;result&#x27;][&#x27;location&#x27;][&#x27;lat&#x27;])</span></span><br><span class="line"><span class="string">        loca[&#x27;lng&#x27;] = tamped[0]</span></span><br><span class="line"><span class="string">        loca[&#x27;lat&#x27;] = tamped[1]</span></span><br><span class="line"><span class="string">        level=answer[&#x27;result&#x27;][&#x27;level&#x27;]</span></span><br><span class="line"><span class="string">        loca[&#x27;level&#x27;]=level</span></span><br><span class="line"><span class="string">        print(address,loca[&#x27;lng&#x27;], loca[&#x27;lat&#x27;],level)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        if loca:</span></span><br><span class="line"><span class="string">            return loca</span></span><br><span class="line"><span class="string">    except:</span></span><br><span class="line"><span class="string">        print(address)</span></span><br><span class="line"><span class="string">        loca[&#x27;lng&#x27;] = 0</span></span><br><span class="line"><span class="string">        loca[&#x27;lat&#x27;] = 0</span></span><br><span class="line"><span class="string">        loca[&#x27;level&#x27;]=&#x27;无&#x27;</span></span><br><span class="line"><span class="string">        return loca</span></span><br><span class="line"><span class="string">        # geocodeB(address, city)</span></span><br><span class="line"><span class="string">def get_latlng(location,address_dict,cityname):</span></span><br><span class="line"><span class="string">    if location in address_dict:</span></span><br><span class="line"><span class="string">        loca = address_dict[location]</span></span><br><span class="line"><span class="string">    else:</span></span><br><span class="line"><span class="string">        loca = geocodeB(location, cityname)</span></span><br><span class="line"><span class="string">        # print(location)</span></span><br><span class="line"><span class="string">        address_dict[location] = loca</span></span><br><span class="line"><span class="string">    return loca</span></span><br></pre></td></tr></table></figure>
+<p>这样处理还有一点小的缺点，因为百度API的准确度并不能达到100%，如果遇见异常值，使用address而不是location字段应该会避免一些问题（使用天目山路518号东南方向160米而不是神游），当然如果地址过于模糊，如（杭州）这样就没办法啦。好啦，那么我们进行下一步。先看看各个值的分布。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009180527.png"><br>玩微博的还是女性多一些，约为男性的2.5倍。</p>
+<p>看看上个月Top10的签到位置。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009180638.png"><br>不懂就问，西湖热度很高可以接受，这个下沙是个什么地方？</p>
+<p>之前我们分享了上海的AOI数据，那么我们再来展点试试。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009171711.png"><br>借助这种时间序列数据，完全可以做城市活力的研究了。它的分布格局也与街景均匀感知不同，属于高度的空间有偏感知。<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221009170243.png"></p>
+<p>点击阅读原文获取坐标纠偏代码，我们分享了8个城市的POI数据，公开版分享了部分数据并删除了个人敏感信息，回复：</p>
+<p><strong>南京POI</strong> 获取南京市签到数据</p>
+<p><strong>天津POI</strong> 获取天津市签到数据</p>
+<p><strong>深圳POI</strong> 获取深圳市签到数据</p>
+<p><strong>广州POI</strong> 获取广州市签到数据</p>
+<p><strong>上海POI</strong> 获取上海市签到数据</p>
+<p><strong>杭州POI</strong> 获取杭州市签到数据</p>
+<p><strong>成都POI</strong> 获取成都市签到数据</p>
+<p><strong>福州POI</strong> 获取福州市签到数据</p>
+<p>好啦，我们下期见，分享我们录用在 <strong>Journal of Environmental Management</strong> 上的碳排放空间平等和空间正义的研究。</p>
+<p><strong>如果您觉得有帮助，请引用以下至少一篇文章。</strong></p>
+<blockquote>
+<p>1.Zhang Y, Chen Z, Zheng X, et al. Extracting the location of flooding events in urban systems and analyzing the semantic risk using social sensing data[J]. Journal of Hydrology, 2021, 603: 127053.</p>
+</blockquote>
+<blockquote>
+<p>2.Chen N, Zhang Y, Du W, et al. KE-CNN: A new social sensing method for extracting geographical attributes from text semantic features and its application in Wuhan, China[J]. Computers, Environment and Urban Systems, 2021, 88: 101629.</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/qrcode_for_gh_fb8c6fad6108_258.jpg"></p>
 
           
         
@@ -1352,7 +1515,7 @@ POI序号，地点名，地址，经度，纬度，城市代码，POI类别代�
               
                 <a href="/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1374,7 +1537,7 @@ POI序号，地点名，地址，经度，纬度，城市代码，POI类别代�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
