@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yan Zhang's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="News:文章 Article  14 .Highway Vehicle Route Reconstruction Using Sparse and Noisy Communication Base Station Fingerprints  路径规划的研究文章录用到 IEEE Sensors (SCI,中科院二区,IF&#x3D;4.3)! 2023~ , PDF  项目 Funding  13">
+<meta property="og:type" content="website">
+<meta property="og:title" content="news">
+<meta property="og:url" content="http://example.com/news/index.html">
+<meta property="og:site_name" content="Yan Zhang&#39;s Blog">
+<meta property="og:description" content="News:文章 Article  14 .Highway Vehicle Route Reconstruction Using Sparse and Noisy Communication Base Station Fingerprints  路径规划的研究文章录用到 IEEE Sensors (SCI,中科院二区,IF&#x3D;4.3)! 2023~ , PDF  项目 Funding  13">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221015095818.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221015095845.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221003201343.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221003201457.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/jag.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/city2vec.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/spectrum.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/fc.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/bert.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/hy2.jpg">
+<meta property="article:published_time" content="2022-10-19T09:26:58.000Z">
+<meta property="article:modified_time" content="2022-10-19T09:27:36.845Z">
+<meta property="article:author" content="Yan Zhang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221015095818.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/news/"/>
+
+
+
+
+
+  <title>news | Yan Zhang's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yan Zhang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">news</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="News"><a href="#News" class="headerlink" title="News:"></a>News:</h3><p><code>文章 Article</code></p>
+<ul>
+<li>14 .Highway Vehicle Route Reconstruction Using Sparse and Noisy Communication Base Station Fingerprints<font color=#FF0000>  <strong>路径规划的研究文章录用到 IEEE Sensors (SCI,中科院二区,IF&#x3D;4.3)!</strong></font> 2023~ , <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/yemanzhongting/picb/main/Highway_Vehicle_Trajectory_Reconstruction_Using_Sparse_and_Noisy_Communication_Base_Station_Fingerprints%20(2).pdf">PDF</a><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221015095818.png" alt="个人照片"><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221015095845.png"></li>
+</ul>
+<p><code>项目 Funding</code></p>
+<ul>
+<li>13 .中国科协2022年度研究生科普能力提升项目拟资助名单<font color=#FF0000>  <strong>KXYJS2022084 	武汉大学 基于书目提要的中国古代农业科技文献数据挖掘与知识图谱呈现</strong></font> 2022.10 , <a target="_blank" rel="noopener" href="https://yemanzhongting.github.io/2022/10/01/socialmedia/">微信推送的中文详细解读</a></li>
+</ul>
+<!-- ![个人照片](https://raw.githubusercontent.com/yemanzhongting/picb/main/20221003201343.png) -->
+
+
+
+<p><code>文章 Article</code></p>
+<ul>
+<li>12 .Will Carbon Trading Reduce Spatial Inequality? A Spatial Analysis of 200 Cities in China<font color=#FF0000>  <strong>碳中和的研究文章录用到 Journal of Environmental Management (SCI,中科院二区Top,IF&#x3D;8.9)!</strong></font> 2023.01 , <a target="_blank" rel="noopener" href="https://yemanzhongting.github.io/2022/10/01/socialmedia/">微信推送的中文详细解读</a><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221003201343.png" alt="个人照片"></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221003201457.png"></p>
+<ul>
+<li>11 .Migratable urban street scene sensing method based on vision language pre-trained model<font color=#FF0000>  <strong>城市研究的文章录用到 International Journal of Applied Earth Observation and Geoinformation (SCI,中科院一区,IF&#x3D;7.7)!</strong></font> 2022.8 , <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/m5IKEBE0ZLltLRBcgcxnwA">微信推送的中文详细解读</a><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/jag.jpg" alt="个人照片"></li>
+</ul>
+<!-- [文章Link](../pic/manuscript_city_scsi.pdf) -->
+
+<ul>
+<li>10 .City2vec:Urban Knowledge Discovery Based on Population Mobile Network<font color=#FF0000>  <strong>城市研究的文章录用到 Sustainable Cities and Society (SCI,中科院一区,IF&#x3D;10.696)!</strong></font> 2022.7   <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/yemanzhongting/picb/main/manuscript_city_scsi.pdf">文章Link</a> , <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/cygBgj_OuQL1rgo-k03zjQ">微信推送的中文详细解读</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/city2vec.jpg" alt="个人照片"><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/spectrum.jpg" alt="个人照片"></p>
+<ul>
+<li><p>9 .Knowledge-Topology Two-Layer Spatially Dependent Graph Neural Networks to Identify Road Functions<br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/fc.jpg" alt="个人照片"></p>
+</li>
+<li><p><font color=#FF0000>  <strong>社会感知与自然语言处理的文章录用到 Journal of Hydrology (SCI,中科院一区)!</strong></font> 2021.10   <a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0022169421011033">文章Link</a> , <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/1pgeGunrvC0daXpCCvhbzA">微信推送的中文详细解读</a></p>
+<p></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/bert.png" alt="个人照片"><br><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/hy2.jpg" alt="个人照片"></p>
+<p>8.<em><strong>Zhang Y</strong></em>, Chen Z, Zheng X, et al. Extracting the location of flooding events in urban systems and analyzing the semantic risk using social sensing data[J]. Journal of Hydrology, 2021, 603: 127053. </p></p>
+<ul>
+<li><font color=#FF0000>  <strong>结构方程模型与湿地驱动变化的文章录用到 Science of The Total Environment (SCI,中科院一区)!</strong></font> 2021.10   <a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/abs/pii/S0022169421011033">Link</a> <p></li>
+</ul>
+<p>7.Wang C, Ma L, <em><strong>Zhang Y</strong></em>, et al. Spatiotemporal dynamics of wetlands and their driving factors based on PLS-SEM: A case study in Wuhan[J]. Science of The Total Environment, 2022, 806: 151310.</p>
+</p>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://raw.githubusercontent.com/yemanzhongting/picb/main/6275bea8817cd5b99199fcdc83dc47d.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#News"><span class="nav-number">1.</span> <span class="nav-text">News:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yan Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
