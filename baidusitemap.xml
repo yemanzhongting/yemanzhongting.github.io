@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://example.com/2022/09/28/MyPage/</loc>
+    <lastmod>2022-10-28</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/10/09/weibodata/</loc>
+    <lastmod>2022-10-19</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/10/01/award/</loc>
+    <lastmod>2022-10-03</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/10/01/data/</loc>
+    <lastmod>2022-10-02</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/10/01/AISdata/</loc>
+    <lastmod>2022-10-02</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/09/21/migrate/</loc>
+    <lastmod>2022-10-02</lastmod>
+  </url>
+  <url>
+    <loc>http://example.com/2022/10/01/socialmedia/</loc>
+    <lastmod>2022-10-02</lastmod>
+  </url>
+</urlset> 
