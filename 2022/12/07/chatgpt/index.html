@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Yan Zhang's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="谈起AI届，几家大公司是无论如何都不能不提及的，谷歌的GoogleX与DeepMind (下围棋那个)、Meta的FAIR (Resnet提出者恺明所就职的)、OpenAI (搞大模型的领先公司，代表作是GPT，对标谷歌的Bert)、亚马逊 (中国AI研究生的实际导师李沐大神曾经供职的公司) 以及微软 (亚洲研究院鼎鼎大名)。自从Attention Is All You Need这篇引用超过接近6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chatgpt">
+<meta property="og:url" content="http://example.com/2022/12/07/chatgpt/index.html">
+<meta property="og:site_name" content="Yan Zhang&#39;s Blog">
+<meta property="og:description" content="谈起AI届，几家大公司是无论如何都不能不提及的，谷歌的GoogleX与DeepMind (下围棋那个)、Meta的FAIR (Resnet提出者恺明所就职的)、OpenAI (搞大模型的领先公司，代表作是GPT，对标谷歌的Bert)、亚马逊 (中国AI研究生的实际导师李沐大神曾经供职的公司) 以及微软 (亚洲研究院鼎鼎大名)。自从Attention Is All You Need这篇引用超过接近6">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221207232906.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_jpg/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuoCYibsYjkgvrne7rBv3wcqOOv6ynrdmBU9PQMluujnJqWa5mPdjqicbQ/640?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuqPn4foaKZic4rI8Az8G0FbnTnhC5eS4Zb1dSM1kzPhha6PuicKtCGecw/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuHpxJlVYdMbkmWjXOiakBiaAqdvSCqCG1OwfCPa8d6rAibvRZibzEJW9I7g/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghusfKCL4mwXSnEZLibpp7qZ18OIfUM67ibJwhC0BLMfxFFG1MhpH8wxq1A/640?wx_fmt=png">
+<meta property="og:image" content="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Yellowdog.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuUhWI6Xt6CcLvSjY4MqPUxl3QkjlonkWJugU6L1y88kbwZricDgib9dqQ/640?wx_fmt=png">
+<meta property="og:image" content="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Slap.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuyicEVTdCqLuUrIh297KXOhnuWSLJ5jKsvOfU1ukskTO7VArTX6hAg5Q/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4Vghuv9bcuEeZia2zZnDhbeOmT899tl8dzPNjgrTBH0o5ydmMicl0xd7VCWkg/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghunBfvKaujbM6ibRrUrZ29BRSka7yXsBwRjfzFauamtjnSoBfcCFPiaGTA/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuoeSTtJjZaeWuTpVvicRibJkYgDRIRAmMnU6YLOO6gdtkReLxRDoqswCg/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuaadmnN1LSWWClRiaCfdoVcmL3J5Dt0GsooxaeshClrE4AayNNYCqERQ/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4Vghue3rWEykONZq8ID5GsztoAqeQTCSQbuiaCYy9nsZtjNPrAzkh02zib9Nw/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuZxS0eKpaJV5OpiavRI015YYCgH5rfsN3m1r5IibSDW8A06gS4X993uag/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqvwKo61k4VIibx5wuGAQBicjxqvSYh3iaGaUBwIrFmqM6Z6MIDnTwHEjtJhwqHbicIxgWBAfEmyCN5FuQ/640?wx_fmt=png">
+<meta property="og:image" content="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Addoil.png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghukSPtqCqaHHsjIUG5faMTfExHajxaWIRYcBWq2QFianYJVa3a9tNmEbg/640?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuTHGC2EXu96wt6Rz0Nu4uurpfFSYUL9GMCb5BjclPmfPZUAesOIq3Rw/640?wx_fmt=png">
+<meta property="article:published_time" content="2022-12-07T15:27:38.000Z">
+<meta property="article:modified_time" content="2022-12-07T15:31:12.364Z">
+<meta property="article:author" content="Yan Zhang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221207232906.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2022/12/07/chatgpt/"/>
+
+
+
+
+
+  <title>chatgpt | Yan Zhang's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yan Zhang's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-news">
+          <a href="/news/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            News
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-awards">
+          <a href="/awards/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            Awards
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-data">
+          <a href="/data/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Data
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/07/chatgpt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/yemanzhongting/picb/main/6275bea8817cd5b99199fcdc83dc47d.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yan Zhang's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">chatgpt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-12-07T23:27:38+08:00">
+                2022-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>谈起AI届，几家大公司是无论如何都不能不提及的，谷歌的GoogleX与DeepMind (下围棋那个)、Meta的FAIR (Resnet提出者恺明所就职的)、OpenAI (搞大模型的领先公司，代表作是GPT，对标谷歌的Bert)、亚马逊 (中国AI研究生的实际导师李沐大神曾经供职的公司) 以及微软 (亚洲研究院鼎鼎大名)。自从Attention Is All You Need这篇引用超过接近6万(本菜鸡学术生涯能有十分之一就心满意足了)的神文刊出后，直接引爆了AI新范式的研究。该文章提出了一种新的简单网络架构，即 Transformer，它完全基于注意力机制，完全摒弃了循环和卷积。同时可并行化计算程度更高，并且需要的训练时间明显减少。</p>
+<p><img src="https://raw.githubusercontent.com/yemanzhongting/picb/main/20221207232906.png" alt="img"></p>
+<p>  以Transformer作为攻城利器，各大AI巨头开始了大模型的军备竞赛。模型越来越大，预训练模型所需要的资源也越来越夸张。Transformer最开始只在NLP（自然语言处理）领域大放异彩，例如谷歌的Bert,OpenAI的GPT,自监督模型成为现有AI研究的显学，训练GPT-3模型甚至花了1000万美元！自从发现Transformer模型在视觉领域同样具有较高精度(VIT),双流多模态模型层出不穷，看的我眼花缭乱，表示真的太卷了，学不动了！先是搞图片问答，又开始搞文本生成图像，又觉得二维图像跟静态图像不行，开始搞生成三维图像以及视频。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuoCYibsYjkgvrne7rBv3wcqOOv6ynrdmBU9PQMluujnJqWa5mPdjqicbQ/640?wx_fmt=jpeg" alt="img"></p>
+<p>  最近OpenAI又开始搞事了！推出了ChatGPT,可谓是最近IT圈的头条新闻，已经有11多万条网页相关信息了！</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuqPn4foaKZic4rI8Az8G0FbnTnhC5eS4Zb1dSM1kzPhha6PuicKtCGecw/640?wx_fmt=png" alt="img"></p>
+<p>  我们知道，目前的人工智能客服可以说是人工智障，其原因之一是缺乏大规模高质量的标注语料，且下游任务太多且太杂，你不能出现一个需求就训练一个新的模型，况且新需求的训练语料并不好找，这一直限制着智能对话的发展。我们知道虽然微软的COCO数据集，李飞飞大佬的ImageNet数据集虽然规模都很大，质量都很高，但是相较于人类知识库、百度谷歌的海量页面而言，数据规模翻不起一点浪花。自监督学习的范式可以使模型充分从大量开源无标注或低质量标注数据中学习到规律，这种范式以及基于该范式的transformer方法一经出现，持续成为计算机领域的热点，它似乎为我们提供了一种广泛适用的通用模型的希望 (关于预训练模型可以在Zhang Y, Zhang F, Chen N. Migratable urban street scene sensing method based on vision language pre-trained model[J]. International Journal of Applied Earth Observation and Geoinformation, 2022, 113: 102989.找到更多)。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuHpxJlVYdMbkmWjXOiakBiaAqdvSCqCG1OwfCPa8d6rAibvRZibzEJW9I7g/640?wx_fmt=png" alt="img"></p>
+<p>  无论哪种对话模型都需要编码器与解码器架构(Seq2Seq)，OpenAI虽然还没有开源代码跟论文，但是他肯定也是采用了自监督的训练方法，不知道这次又氪金了多少呢~</p>
+<p>  言归正传，本文讨论的ChatGPT，这是一种新的对话语言模型 (LM)，它基于GPT-3.5家族系列并且类似于InstructGPT（通过人类反馈与强化学习保持一致）。简而言之，ChatGPT 是一个聊天机器人，可以“回答后续问题，承认错误，挑战不正确的前提，并拒绝不适当的请求”。ChatGPT 是迄今为止世界上最好的聊天机器人。它可以写散文和诗歌。它可以为 AI 艺术模型找到很好的提示。它可以角色扮演。它可以编写代码，找到错误，解释它，解决它，并解释解决方案。它可以以最奇怪的方式组合想法。该模型的卓越能力和比基线 GPT-3 更好的对齐方式，使其感觉更人性化。反过来，这使它更可信——尽管这并不一定意味着它更可靠，因此更值得信赖。与所有其他 LM（例如 GPT、Galactica、LaMDA）一样，它会编造内容，产生歧视内容, 可能会产生有害的补全信息，并产生错误信息，这些缺陷都没有显著的改变（废话，人类网络上歧视谩骂的消息一点不少）。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghusfKCL4mwXSnEZLibpp7qZ18OIfUM67ibJwhC0BLMfxFFG1MhpH8wxq1A/640?wx_fmt=png" alt="img"></p>
+<p>  自12.1OpenAI发布这条推特后，得到了6k多个喜欢。好像很多，其实也就是某KUN一条广告微博的1&#x2F;300的点赞量吧，实锤300 OpenAI &#x3D;1 KUN。不如我们中国人民亏一点，大幅让利给美帝，一换一，KUNKUN给美帝，OpenAI给我们<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Yellowdog.png" alt="img">。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuUhWI6Xt6CcLvSjY4MqPUxl3QkjlonkWJugU6L1y88kbwZricDgib9dqQ/640?wx_fmt=png" alt="img"></p>
+<p>  网友也开始利用这个工具开始各种搞怪。假设一龙马（？）跟你说这周你干了啥？工作有啥进展？你这周摸鱼啥也没干，赶紧打开ChatGPT（话说我以后是不是可以不用自己写周报了？做个脚本每周五定时访问ChatGPT API填充内容<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Slap.png" alt="img">）。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuyicEVTdCqLuUrIh297KXOhnuWSLJ5jKsvOfU1ukskTO7VArTX6hAg5Q/640?wx_fmt=png" alt="img"></p>
+<p>Q: 你是 Twitter 的高级数据工程师。Elon 问你这周做了什么。</p>
+<p>A1: 总的来说，该算法在Twitter内容审核系统的准确性方面有了显著提高。在最初的测试中， 该算法能够以95.6%的准确率对冒犯性内容进行准确分类，显著优于之前的系统，后者的准 确率仅为85.2%。算法准确性的提高将帮助Twitter更有效地识别和删除有害或冒犯性的内容，确保所有更安全和更积极的用户体验。此外，机器学习技术的使用允许算法随 着时间的推移不断适应和改进，因为它暴露于更多的数据和来自Twitter社区的反馈。该算法的实现需要结合数据工程、机器学习和自然语言处理方面的技术专长。通过利用最新的技术 和最佳实践，我能够在一周内开发并实现该算法，使其成为提高Twitter内容审核能力的高效解决方案。</p>
+<p>A2: Logistic回归模型。然后根据测试数据对模型进行评估，并将各种性能指标打印到控制台，包括准 确性、F1评分、精确度和召回率。总的来说，该算法在Twitter内容审核系统的准确性方面有了显著提高。在最初的测试中，该算 法能够以95.6%的准确率对冒犯性内容进行准确分类，显著优于之前的系统，后者的准确率仅为 85.2%。算法准确性的提升将帮助Twitter更有效地识别并移除平台上的有害或冒犯性内容，确 保为所有人提供更安全、更积极的用户体验。此外，机器学习技术的使用允许算法随着时间的 推移不断适应和改进，因为它暴露于更多的数据和来自Twitter社区的反馈。该算法的实现需要结合数据工程、机器学习和自然语言处理方面的技术专长。通过利用最新技术和最佳实践，我能够在一周内开发并实现该算法，使其成为提高Twitter内容审核能力的高效解方案。</p>
+<p>  <strong>毫无违和感有没有！马哥肯定给你加工资！</strong></p>
+<p>  好东西自然有人力推，有大佬推出了Chrome插件，短短几天就得到2k个star。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4Vghuv9bcuEeZia2zZnDhbeOmT899tl8dzPNjgrTBH0o5ydmMicl0xd7VCWkg/640?wx_fmt=png" alt="img"></p>
+<p>  吃瓜群众如此热情，直接把OpenAI干懵逼了，临时关闭了注册窗口，“经历异常高的需求,扩展我们的系统”，翻译成人话，打钱!</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghunBfvKaujbM6ibRrUrZ29BRSka7yXsBwRjfzFauamtjnSoBfcCFPiaGTA/640?wx_fmt=png" alt="img"></p>
+<p>  申请API的地址: chat.openai.com，没事都去注册玩，薅资本主义羊毛~</p>
+<p>  我们看看它的其他具体应用:</p>
+<p>  <strong>1.写代码</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuoeSTtJjZaeWuTpVvicRibJkYgDRIRAmMnU6YLOO6gdtkReLxRDoqswCg/640?wx_fmt=png" alt="img"></p>
+<p>  <strong>2.回答奇怪的数字序列（考公必备？），甚至还可以给你解释，这是它最诱人的优点，可以解释自己为啥这个答案。</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuaadmnN1LSWWClRiaCfdoVcmL3J5Dt0GsooxaeshClrE4AayNNYCqERQ/640?wx_fmt=png" alt="img"></p>
+<p>  <strong>3.帮你写论文！最近正在写博士论文，要不试试？（大胆！天临暴怒，合着你在演我）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4Vghue3rWEykONZq8ID5GsztoAqeQTCSQbuiaCYy9nsZtjNPrAzkh02zib9Nw/640?wx_fmt=png" alt="img"></p>
+<p>  <strong>4.替代搜索引擎？（百度:我的医药广告还要挣钱呢）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuZxS0eKpaJV5OpiavRI015YYCgH5rfsN3m1r5IibSDW8A06gS4X993uag/640?wx_fmt=png" alt="img"></p>
+<p>  <strong>5.还可以帮你算八字。</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqvwKo61k4VIibx5wuGAQBicjxqvSYh3iaGaUBwIrFmqM6Z6MIDnTwHEjtJhwqHbicIxgWBAfEmyCN5FuQ/640?wx_fmt=png" alt="img"></p>
+<p>  <strong>6.智能百科问答，但肯定会有错误，台湾肯定是中国的<img src="https://res.wx.qq.com/t/wx_fed/we-emoji/res/v1.3.10/assets/newemoji/Addoil.png" alt="img">。</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghukSPtqCqaHHsjIUG5faMTfExHajxaWIRYcBWq2QFianYJVa3a9tNmEbg/640?wx_fmt=png" alt="img"></p>
+<p>  可以看到，OpenAI提供的这个聊天机器人可以写程序，可以算命，应用场景还是相对广阔的，未来基本上可以宣布<strong>百度知道</strong>这个产品的退役。但是在包含数字精确的场景，还是很粗糙的，这是因为完全自监督是很难完成学习，而知识图谱是一个不错的备选方案。OpenAI替代谷歌我认为为时过早，但是它的出现可以很好的炒一炒股价，赢得资本市场的青睐，也希望未来带来服务于公众的爆款产品。缺点是，我们知道人类的知识在不断的增量，如此大的模型，不可能每秒都进行一次训练(目前ChatGPT只包含2021年及之前的内容)。那每隔一段时间重新训练一下么？那就失了时效性，如何在大模型上增量学习相信也是下一个学术圈关注的点。</p>
+<p>  最后，多模态进展可谓是一日千里，未来会有相当多的行业可能会被替代，这些行业最主要集中在重复性和低水平劳动的行业。第一就是我们谈及的太多的自动驾驶，可能会消亡司机这个行业，未来自己驾驶汽车会成为一种运动方式，体验车辆的性能，而大部分人都可以享受科技带来的方便，而无需长时间的看着千篇一律的路面。如果说自动驾驶会对人类的生命带来一定的威胁的话，那么我认为设计行业是肯定会产生很大的变革，很快PS,AI,Word都会出现辅助ai插件，三年内就可以达到成熟，人人都可以享受算法进步带来的便利，你需要什么元素只需要告诉模型他就可以自动绘制你需要的内容。文字编辑也会省去大部分重复工作，例如我在写推送时，只需要输入一些关键点对文本生成的特征进行一定的把控，随后进行润色。语言模型进步如此明显，知网躺着挣查重的钱的日子估计也一去不复返。人的创造力会更加受到重视，请注意，电影中全智能的AI是在该范式下是完全没有可能的，自监督实际上是人类现有知识的再组织，并且对版权问题似乎也有一定的法律模糊。而全智能产生人类闻所未闻的新东西的AI恐怕需要生物仿生技术的进步，新范式的出现才有可能。</p>
+<p>  AI第一批替代的肯定是低水平的工作，例如AI可以设计海报，中国实际上已经是白菜价，任意一个打印店都可以几分钟内完成。例如做一个推送，你当然也可以去网上粘粘粘，AI的优势在于他永远不会累，只要有硬件与能源可以一直运行，技术再好的纺工也无法与简单的珍妮机比较速度。然而一些私人订制的，高精度我认为这一波不会被替代，例如设计建筑，AI再准确，但他是不可解释的，怕是没人敢直接应用上去。这一波AI主要替代的低水平工作，工资5000人民币左右的通用设计类工作可能会受到冲击，例如一个编辑，平面设计，再比如国内某生物院士及其学生的电镜工作(院士手下干活的博士生也只有几千块，似乎工作性质也差不多~赶紧替换掉博士的工作，手动狗头)。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/S9HsqSVeUqtb95sVq5Vo2hdHa5l4VghuTHGC2EXu96wt6Rz0Nu4uurpfFSYUL9GMCb5BjclPmfPZUAesOIq3Rw/640?wx_fmt=png" alt="img"></p>
+<p>  OpenAI、谷歌、苹果这种硅谷大型科技公司，在拥有强大科技实力的同时，我认为强大的宣传能力也是不可避免的，酒香也怕巷子深，科技这块容易追，但是软实力（吹牛画大饼的实力，这个能力我认为也很重要）我暂时看不到追赶的希望，也期待我们共同努力。</p>
+<p><strong>点个关注再走吧~不说废话，坚持原创。更新时间不定，保存*<em>星标及时阅读哦。*</em></strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2022/10/09/weibodata/" rel="next" title="Weibodata">
+                <i class="fa fa-chevron-left"></i> Weibodata
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://raw.githubusercontent.com/yemanzhongting/picb/main/6275bea8817cd5b99199fcdc83dc47d.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yemanzhongting" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="sggzhang@whu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://scholar.google.com.hk/citations?user=H8T2HtsAAAAJ" target="_blank" title="Scholar">
+                      
+                        <i class="fa fa-fw fa-google"></i>Scholar</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mp.weixin.qq.com/s/J8hrv94yWaJ9EkHwoXA_8A" target="_blank" title="Wechat">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Wechat</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yan Zhang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
